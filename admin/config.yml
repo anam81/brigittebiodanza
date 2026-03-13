@@ -3,6 +3,9 @@ backend:
   repo: anam81/brigittebiodanza
   branch: main
 
+media_folder: "assets"      # Lokaler Ordner für Bilder
+public_folder: "/assets"    # URL-Pfad für Bilder
+
 collections:
   - name: "pages"
     label: "Seiten"
