@@ -1,6 +1,7 @@
 content:
   - name: Startseite
-    type: document
+    label: Startseite
+    type: single
     path: index.html
     fields:
       - name: titel
@@ -11,3 +12,4 @@ content:
         label: Haupttext
         type: rich-text
         selector: "#inhalt"
+
