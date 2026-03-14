@@ -35,7 +35,7 @@ padding:20px;
 </footer>
 
 <script>
-fetch("content.html")
+fetch("content.html?v=" + Date.now())
 .then(r => r.text())
 .then(html => {
 document.getElementById("content").innerHTML = html;
