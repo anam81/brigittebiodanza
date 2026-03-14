@@ -1,15 +1,2 @@
-content:
-  - name: Startseite
-    label: Startseite
-    type: single
-    path: index.html
-    fields:
-      - name: titel
-        label: Überschrift
-        type: string
-        selector: "#titel"
-      - name: inhalt
-        label: Haupttext
-        type: rich-text
-        selector: "#inhalt"
+
 
