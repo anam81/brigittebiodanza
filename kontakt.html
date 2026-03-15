@@ -17,11 +17,11 @@
     <header>
         <nav>
             <ul>
-                <li><a href="/home">Home</a></li>
-                <li><a href="/biodanza">Was ist Biodanza?</a></li>
-                <li><a href="/uebermich">Über mich</a></li>
-                <li><a href="/termine">Termine</a></li>
-                <li><a href="/kontakt">Kontakt</a></li>
+                <li><a href="/index.html">Home</a></li>
+                <li><a href="/biodanza.html">Was ist Biodanza?</a></li>
+                <li><a href="/uebermich.html">Über mich</a></li>
+                <li><a href="/termine.html">Termine</a></li>
+                <li><a href="/kontakt.html">Kontakt</a></li>
             </ul>
         </nav>
     </header>
@@ -34,20 +34,25 @@
         <img src="Bilder/logo-fuer-header-6.jpg" alt="Biodanza Brigitte Bremen Logo">
         <p class="unterLogo">Willkommen bei Biodanza</p>
         <div class="line"></div>
-        <h1 class="title-large">Herzlich Willkommen zum Lebenstanz</h1>
-        <h2 class="title-small">BIODANZA in Bremen mit Brigitte</h2>
-        <p style="max-width: 550px; margin: 10px auto;">
-        Wir laden Freude – Leichtigkeit – Lebendigkeit – Mut – Kraft – Verbundenheit – Genuss und Entspannung in unser Leben ein
-        </p>
-        <p>Komm tanzen!</p>
+        <h1 class="title-large">Kontakt</h1>
 
-        <!-- Galerie -->
-        <div class="gallery">
-            <img src="Bilder/P1040943-768x512.jpg" alt="Bild 1">
-            <img src="Bilder/P1040966-768x512.jpg" alt="Bild 2">
-            <img src="Bilder/P1040692-e1530278347323-768x512.jpg" alt="Bild 3">
-            <img src="Bilder/2018-Corfu-30-e1537822693380-768x655.jpg" alt="Bild 4">
-        </div>
+        <form action="https://getform.io/f/czdu4o9u17x" method="POST" class="kontakt-form">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+        
+            <label for="email">E-Mail:</label>
+            <input type="email" id="email" name="email" required>
+        
+            <label for="message">Nachricht:</label>
+            <textarea id="message" name="message" rows="8" required></textarea>
+        
+            <!-- Honeypot für Spam-Schutz -->
+            <input type="text" name="_gotcha" style="display:none">
+        
+            <button type="submit">Absenden</button>
+        </form>
+
+        
     </div>
 
     <!-- Footer -->

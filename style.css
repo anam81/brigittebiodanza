@@ -100,13 +100,13 @@ nav ul li {
 /* Überschriften */
 .title-small {
     font-size: 1.5rem;
-    font-weight: 600;
+    font-weight: 500;
     margin-top: 10px;
 }
 
 .title-large {
-    font-size: 2.5rem;
-    font-weight: 700;
+    font-size: 1.9rem;
+    font-weight: 600;
     margin: 20px 0;
 }
 
@@ -228,4 +228,68 @@ footer a {
         width: 70px;
     }
 
+}
+
+/* KontaktForm */
+
+.kontakt-form {
+    max-width: 450px;
+    margin: 0px auto;
+    padding: 0px 20px 20px 20px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    font-family: 'Montserrat', sans-serif;
+    color: var(--Farbe1);
+    background-color: transparent;
+    /* Hintergrund transparent */
+    box-shadow: none;
+    /* optional Schatten entfernen */
+}
+
+.kontakt-form label {
+    margin-top: 10px;
+    margin-bottom: 3px;
+    font-weight: 600;
+    text-align: left;
+}
+
+.kontakt-form input,
+.kontakt-form textarea {
+    background-color: #fff;
+    /* nur die Felder weiß */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    resize: vertical;
+}
+
+.kontakt-form textarea {
+    min-height: 120px;
+    /* größer als vorher */
+}
+
+.kontakt-form button {
+    margin-top: 20px;
+    padding: 12px;
+    background-color: var(--Farbe2);
+    color: #fff;
+    font-weight: 600;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.kontakt-form button:hover {
+    background-color: var(--Farbe3);
+}
+
+/* Mobile Anpassung */
+@media (max-width: 600px) {
+    .kontakt-form {
+        padding: 20px 15px;
+    }
 }
