@@ -35,11 +35,21 @@ padding:20px;
 </footer>
 
 <script>
-fetch("content.html?v=" + Date.now())
-.then(r => r.text())
-.then(html => {
-document.getElementById("content").innerHTML = html;
-});
+
+    fetch("current.txt?v=" + Date.now())
+        .then(r => r.text())
+        .then(filename => {
+
+            fetch("content/" + filename.trim() + "?v=" + Date.now())
+                .then(r => r.text())
+                .then(html => {
+
+                    document.getElementById("content").innerHTML = html;
+
+                });
+
+        });
+
 </script>
 
 </body>

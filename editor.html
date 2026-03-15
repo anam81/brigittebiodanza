@@ -59,47 +59,73 @@ quill.root.innerHTML = html;
 // speichern (Download)
     async function saveToGitHub() {
 
-        const repo = "anam81/brigittebiodanza";
-        const path = "content.html";
-        const branch = "main";
+            const repo = "USERNAME/REPO";
+            const branch = "main";
 
-        let token = localStorage.getItem("githubToken");
+            let token = localStorage.getItem("githubToken");
 
-        if (!token) {
-            token = prompt("GitHub Token eingeben");
-            localStorage.setItem("githubToken", token);
+            if (!token) {
+                token = prompt("GitHub Token eingeben");
+                localStorage.setItem("githubToken", token);
+            }
+
+            const content = quill.root.innerHTML;
+
+            const filename = "content-" + Date.now() + ".html";
+
+            const encoded = btoa(unescape(encodeURIComponent(content)));
+
+
+            // 1️⃣ neue content Datei
+            await fetch(`https://api.github.com/repos/${repo}/contents/content/${filename}`, {
+
+                method: "PUT",
+
+                headers: {
+                    "Authorization": "token " + token,
+                    "Accept": "application/vnd.github+json"
+                },
+
+                body: JSON.stringify({
+
+                    message: "New content version",
+                    content: encoded,
+                    branch: branch
+
+                })
+
+            });
+
+
+            // 2️⃣ current.txt aktualisieren
+
+            const currentFile = await fetch(
+                `https://api.github.com/repos/${repo}/contents/current.txt`
+            ).then(r => r.json());
+
+            await fetch(`https://api.github.com/repos/${repo}/contents/current.txt`, {
+
+                method: "PUT",
+
+                headers: {
+                    "Authorization": "token " + token,
+                    "Accept": "application/vnd.github+json"
+                },
+
+                body: JSON.stringify({
+
+                    message: "Update pointer",
+                    content: btoa(filename),
+                    sha: currentFile.sha,
+                    branch: branch
+
+                })
+
+            });
+
+            alert("Gespeichert!");
+
         }
-
-        const content = quill.root.innerHTML;
-
-        // aktuelle Datei holen
-        const file = await fetch(
-            `https://api.github.com/repos/${repo}/contents/${path}?ref=${branch}`
-        ).then(r => r.json());
-
-        const sha = file.sha;
-
-        // neue Version committen
-        await fetch(`https://api.github.com/repos/${repo}/contents/${path}`, {
-
-            method: "PUT",
-
-            headers: {
-                "Authorization": "token " + token,
-                "Accept": "application/vnd.github+json"
-            },
-
-            body: JSON.stringify({
-                message: "Update content",
-                content: btoa(unescape(encodeURIComponent(content))),
-                sha: sha,
-                branch: branch
-            })
-
-        });
-
-        alert("Gespeichert!");
-    }
 
     // BUTTON VERBINDEN
     document.getElementById("save").onclick = saveToGitHub;
