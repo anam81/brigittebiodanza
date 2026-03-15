@@ -38,53 +38,18 @@
             <div class="line"></div>
 
             <h1 class="title-large">Termine</h1>
-            
-            <div id="content"
-                style="text-align:left; max-width:100%; margin:0 auto; box-sizing:border-box; word-break:break-word; overflow-x:auto;">
-            </div>
+
+            <div id="content" style="text-align:left; max-width:100%; margin:0 auto; overflow-x:auto; word-break:break-word;"></div>
             
             <style>
-                /* Quill-Ausgabe */
-                #content h1 {
-                    font-size: 1.7rem;
-                    font-weight: 600;
-                    text-align: center;
-                    /* Überschriften mittig */
-                }
-            
-                #content h2 {
-                    font-size: 1.3rem;
-                    font-weight: 500;
-                    text-align: center;
-                    /* Unterüberschriften mittig */
-                }
-            
-                #content p {
-                    margin: 0 0 1rem 0;
-                    /* vertikaler Abstand zwischen Absätzen */
-                }
-            
-                /* Bilder responsive und mittig */
-                #content img {
+                /* Quill-Inhalt: responsive machen, ohne die Ausrichtung zu ändern */
+                #content img,
+                #content table,
+                #content pre,
+                #content iframe {
                     max-width: 100%;
                     height: auto;
                     display: block;
-                    margin: 0 auto;
-                }
-            
-                /* Tabellen responsive und mittig */
-                #content table {
-                    max-width: 100%;
-                    width: 100%;
-                    border-collapse: collapse;
-                    margin: 1rem auto;
-                }
-            
-                #content th,
-                #content td {
-                    border: 1px solid #ccc;
-                    padding: 0.5rem;
-                    text-align: center;
                 }
             
                 /* Lange Wörter umbrechen */
