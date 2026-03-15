@@ -15,7 +15,13 @@
         }
 
         #editor {
-            height: 300px;
+            min-height: 200px;       /* mindestens sichtbar */
+            max-height: 80vh;        /* maximal Höhe */
+            height: 300px;           /* Starthöhe */
+            overflow-y: auto;        /* Scrollen erlauben */
+            border: 1px solid #ccc;  /* optional, sichtbar */
+            padding: 10px;
+            resize: vertical;        /* live Skalierung erlauben */
         }
 
         button {

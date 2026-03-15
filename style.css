@@ -13,10 +13,3 @@
     color: var(--FarbeLink);
     text-decoration: none;
 }
-#editor {
-    min-height: 200px;
-    max-height: 80vh;
-    overflow-y: auto;
-    resize: vertical;
-    /* erlaubt live Höhe ändern */
-}
