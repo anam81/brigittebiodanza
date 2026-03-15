@@ -1,21 +1,15 @@
 :root {
-    --color-primary: #1a73e8;
-    --color-secondary: #fbbc05;
-    --color-accent: #34a853;
-    --color-danger: #ea4335;
-    --color-text: #202124;
+    --Farbe1: #2b2b2b;
+    --Farbe2: #4c79f5;
+    --Farbe3: #1db8cc;
+    --Farbe4: #17b377;
+    --Farbe5: #ffb01d;
+    --Farbe6: #e01c5d;
+    --Farbe7: #eb5050;
+    --FarbeLink: #ffb01d;
 }
-/* Aktive Toolbar-Buttons orange färben */
-.ql-snow .ql-toolbar button.ql-active .ql-stroke {
-    stroke: orange !important;
-}
-.ql-snow .ql-toolbar button.ql-active .ql-fill {
-    fill: orange !important;
-}
-/* Optional: Hover-Effekt */
-.ql-snow .ql-toolbar button:hover .ql-stroke {
-    stroke: orange !important;
-}
-.ql-snow .ql-toolbar button:hover .ql-fill {
-    fill: orange !important;
+/* Editor */
+.ql-snow .ql-editor a {
+    color: var(--FarbeLink);
+    text-decoration: none;
 }
