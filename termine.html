@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biodanza Brigitte Bremen</title>
+
+    <!-- Google Font Montserrat -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Externe CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Header / Menü -->
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/home">Home</a></li>
+                <li><a href="/biodanza">Was ist Biodanza?</a></li>
+                <li><a href="/uebermich">Über mich</a></li>
+                <li><a href="/termine">Termine</a></li>
+                <li><a href="/kontakt">Kontakt</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Content mit Hintergrundbild -->
+    <main class="hero" style="background-image: url('Bilder/green_dust_scratch.png');">
+
+        <!-- Hauptbereich -->
+        <div class="section">
+            <img src="Bilder/logo-fuer-header-6.jpg" alt="Biodanza Brigitte Bremen Logo">
+            <p class="unterLogo">Willkommen bei Biodanza</p>
+            <div class="line"></div>
+            
+            <div id="content"></div>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <a href="/impressum">Impressum</a> |
+            <a href="/datenschutz">Datenschutzerklärung</a>
+            <p>© <span id="year"></span> Brigitte Münch</p>
+        </footer>
+
+        <script>
+            // aktuelles Jahr automatisch
+            document.getElementById('year').textContent = new Date().getFullYear();
+
+            async function loadLatest() {
+
+                const repo = "anam81/brigittebiodanza";
+
+                const files = await fetch(
+                    `https://api.github.com/repos/${repo}/contents/content`
+                ).then(r => r.json());
+
+                let versions = [];
+
+                files.forEach(file => {
+
+                    const match = file.name.match(/content-(\d+)\.html/);
+
+                    if (match) {
+
+                        versions.push({
+                            name: file.name,
+                            time: parseInt(match[1])
+                        });
+
+                    }
+
+                });
+
+                // neueste zuerst
+                versions.sort((a, b) => b.time - a.time);
+
+
+                // versuche Dateien der Reihe nach
+                for (let v of versions) {
+
+                    const res = await fetch("content/" + v.name + "?v=" + Date.now());
+
+                    if (res.ok) {
+
+                        const html = await res.text();
+
+                        // GitHub Pages fallback erkennen
+                        if (html.trim().startsWith("<!DOCTYPE")) {
+                            continue;
+                        }
+                        document.getElementById("content").innerHTML = html;
+                        return;
+
+                    }
+
+                }
+
+                // wenn gar nichts klappt
+                document.getElementById("content").innerHTML =
+                    "Inhalt wird gerade aktualisiert.";
+
+            }
+
+            loadLatest();
+
+        </script>
+</body>
+
+</html>

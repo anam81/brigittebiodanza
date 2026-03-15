@@ -1,15 +1,231 @@
 :root {
-    --Farbe1: #2b2b2b;
+    --Farbe1: #464646;
     --Farbe2: #4c79f5;
     --Farbe3: #1db8cc;
     --Farbe4: #17b377;
     --Farbe5: #ffad14;
     --Farbe6: #e01c5d;
     --Farbe7: #eb5050;
+    --FarbeGrau: #858585;
     --FarbeLink: #ffad14;
 }
+
 /* Editor */
 .ql-snow .ql-editor a {
     color: var(--FarbeLink);
     text-decoration: none;
+}
+
+/* Basis-Stile */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html, body {
+    overflow-x: hidden;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--Farbe1);
+    text-align: center;
+    line-height: 1.6;
+}
+
+a {
+    color: var(--FarbeLink);
+    text-decoration: none;
+}
+
+/* Bilder generell responsive */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Header & Menü */
+header {
+    background-color: white;
+    padding: 30px 0;
+    z-index: 10;
+    position: relative;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+}
+
+nav ul li {
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+/* Hero */
+.hero {
+    width: 100%;
+    background-size: auto;
+    background-repeat: repeat;
+    background-position: top left;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 40px;
+}
+
+/* Content Section */
+.section {
+    padding: 30px 20px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.logo {
+    margin: 0px;
+}
+
+/* Linie */
+.line {
+    width: 100px;
+    height: 2px;
+    background-color: var(--FarbeGrau);
+    margin: 20px auto;
+}
+
+/* Überschriften */
+.title-small {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-top: 10px;
+}
+
+.title-large {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin: 20px 0;
+}
+
+/* Text */
+p {
+    font-size: 1rem;
+    margin: 17px 0;
+}
+.unterLogo {
+    margin: 3px;
+    font-size: 0.9rem;
+}
+
+/* Galerie */
+
+.gallery {
+    margin-top: 30px;
+}
+
+.gallery img {
+    width: 575px;
+    max-width: 100%;
+    margin-bottom: 20px;
+    border-radius: 8px;
+}
+
+/* Footer */
+
+footer {
+    width: 100%;
+    background-color: white;
+    padding: 20px 0;
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--FarbeGrau);
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.05);
+}
+
+footer a {
+    margin: 0 10px;
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: var(--FarbeGrau);
+}
+
+/* ---------------- */
+/* Tablet Anpassung */
+/* ---------------- */
+
+@media (max-width: 900px) {
+
+    .title-large {
+        font-size: 2rem;
+    }
+
+    .title-small {
+        font-size: 1.3rem;
+    }
+
+    .section {
+        padding: 25px 15px;
+    }
+
+}
+
+/* ---------------- */
+/* Mobile Anpassung */
+/* ---------------- */
+
+@media (max-width: 600px) {
+
+    header {
+        padding: 10px 0;
+    }
+
+    nav ul {
+        flex-direction: column;
+        gap: 5px;
+    }
+    nav ul li {
+        line-height: 1.2;   /* kleinerer Zeilenabstand */
+        font-size: 0.95rem; /* optional etwas kleiner */
+    }
+
+    .hero {
+        padding-top: 25px;
+    }
+
+    .title-large {
+        font-size: 1.7rem;
+    }
+
+    .title-small {
+        font-size: 1.2rem;
+    }
+
+    .gallery img {
+        width: 100%;
+    }
+
+    footer {
+        font-size: 0.9rem;
+        padding: 15px 0;
+    }
+
+}
+
+/* ---------------- */
+/* Kleine Smartphones */
+/* ---------------- */
+
+@media (max-width: 400px) {
+
+    .title-large {
+        font-size: 1.5rem;
+    }
+
+    .line {
+        width: 70px;
+    }
+
 }
