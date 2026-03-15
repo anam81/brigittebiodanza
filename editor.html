@@ -52,38 +52,51 @@ toolbar:[
 // bestehenden Inhalt laden
     async function loadContent() {
 
-        const repo = "anam81/brigittebiodanza";
+            const repo = "anam81/brigittebiodanza";
 
-        const files = await fetch(
-            `https://api.github.com/repos/${repo}/contents/content`
-        ).then(r => r.json());
+            const files = await fetch(
+                `https://api.github.com/repos/${repo}/contents/content`
+            ).then(r => r.json());
 
-        let newest = null;
-        let newestTime = 0;
+            let versions = [];
 
-        files.forEach(file => {
+            files.forEach(file => {
 
-            const match = file.name.match(/content-(\d+)\.html/);
+                const match = file.name.match(/content-(\d+)\.html/);
 
-            if (match) {
+                if (match) {
 
-                const time = parseInt(match[1]);
+                    versions.push({
+                        name: file.name,
+                        time: parseInt(match[1])
+                    });
 
-                if (time > newestTime) {
-                    newestTime = time;
-                    newest = file.name;
+                }
+
+            });
+
+            // neueste zuerst
+            versions.sort((a, b) => b.time - a.time);
+
+            // versuche Dateien der Reihe nach
+            for (let v of versions) {
+
+                const res = await fetch("content/" + v.name + "?v=" + Date.now());
+
+                if (res.ok) {
+
+                    const html = await res.text();
+                    quill.root.innerHTML = html;
+                    return;
+
                 }
 
             }
 
-        });
+            // fallback
+            quill.root.innerHTML = "<p>Noch kein Inhalt vorhanden.</p>";
 
-        const html = await fetch("content/" + newest)
-            .then(r => r.text());
-
-        quill.root.innerHTML = html;
-
-    }
+        }
 
     loadContent();
 
