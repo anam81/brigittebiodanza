@@ -109,56 +109,59 @@
         // save
         async function saveToGitHub() {
 
-                const repo = "anam81/brigittebiodanza";
-                const branch = "main";
+            const repo = "anam81/brigittebiodanza";
+            const branch = "main";
 
-                let token = localStorage.getItem("githubToken");
+            let token = localStorage.getItem("githubToken");
+
+            // Token abfragen, wenn fehlt
+            if (!token) {
+                token = prompt("GitHub Token eingeben");
 
                 if (!token) {
-                    token = prompt("GitHub Token eingeben");
-
-                    if (!token) {
-                        alert("Speichern abgebrochen.");
-                        return;
-                    }
-
-                    localStorage.setItem("githubToken", token);
-                }
-
-                const html = quill.root.innerHTML;
-
-                const filename = "content-" + Date.now() + ".html";
-
-                const encoded = btoa(unescape(encodeURIComponent(html)));
-
-                const res = await fetch(
-                    `https://api.github.com/repos/${repo}/contents/content/${filename}`,
-                    {
-                        method: "PUT",
-                        headers: {
-                            "Authorization": "token " + token,
-                            "Accept": "application/vnd.github+json"
-                        },
-                        body: JSON.stringify({
-                            message: "new content version",
-                            content: encoded,
-                            branch: branch
-                        })
-                    }
-                );
-
-                if (!res.ok) {
-
-                    const error = await res.json();
-
-                    alert("Fehler beim Speichern:\n" + (error.message || res.status));
+                    alert("Speichern abgebrochen.");
                     return;
-
                 }
 
-                alert("Gespeichert!");
+                localStorage.setItem("githubToken", token);
+            }
+
+            const html = quill.root.innerHTML;
+            const filename = "content-" + Date.now() + ".html";
+            const encoded = btoa(unescape(encodeURIComponent(html)));
+
+            const res = await fetch(
+                `https://api.github.com/repos/${repo}/contents/content/${filename}`,
+                {
+                    method: "PUT",
+                    headers: {
+                        "Authorization": "token " + token,
+                        "Accept": "application/vnd.github+json"
+                    },
+                    body: JSON.stringify({
+                        message: "new content version",
+                        content: encoded,
+                        branch: branch
+                    })
+                }
+            );
+
+            if (!res.ok) {
+
+                const error = await res.json();
+
+                // Token löschen, wenn Authorization Fehler
+                if (res.status === 401 || res.status === 403) {
+                    localStorage.removeItem("githubToken");
+                }
+
+                alert("Fehler beim Speichern:\n" + (error.message || res.status));
+                return;
 
             }
+
+            alert("Gespeichert!");
+        }
 
         document.getElementById("save").onclick = saveToGitHub;
 
