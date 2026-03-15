@@ -50,84 +50,91 @@ toolbar:[
 });
 
 // bestehenden Inhalt laden
-fetch("content.html")
-.then(r => r.text())
-.then(html=>{
-quill.root.innerHTML = html;
-});
+    async function loadContent() {
 
-// speichern (Download)
+        const pointer = await fetch("current.txt?v=" + Date.now())
+            .then(r => r.text());
+
+        const html = await fetch("content/" + pointer.trim())
+            .then(r => r.text());
+
+        quill.root.innerHTML = html;
+
+    }
+
+    loadContent();
+
     async function saveToGitHub() {
 
-            const repo = "USERNAME/REPO";
-            const branch = "main";
+        const repo = "anam82/brigittebiodanze";
+        const branch = "main";
 
-            let token = localStorage.getItem("githubToken");
+        let token = localStorage.getItem("githubToken");
 
-            if (!token) {
-                token = prompt("GitHub Token eingeben");
-                localStorage.setItem("githubToken", token);
-            }
-
-            const content = quill.root.innerHTML;
-
-            const filename = "content-" + Date.now() + ".html";
-
-            const encoded = btoa(unescape(encodeURIComponent(content)));
-
-
-            // 1️⃣ neue content Datei
-            await fetch(`https://api.github.com/repos/${repo}/contents/content/${filename}`, {
-
-                method: "PUT",
-
-                headers: {
-                    "Authorization": "token " + token,
-                    "Accept": "application/vnd.github+json"
-                },
-
-                body: JSON.stringify({
-
-                    message: "New content version",
-                    content: encoded,
-                    branch: branch
-
-                })
-
-            });
-
-
-            // 2️⃣ current.txt aktualisieren
-
-            const currentFile = await fetch(
-                `https://api.github.com/repos/${repo}/contents/current.txt`
-            ).then(r => r.json());
-
-            await fetch(`https://api.github.com/repos/${repo}/contents/current.txt`, {
-
-                method: "PUT",
-
-                headers: {
-                    "Authorization": "token " + token,
-                    "Accept": "application/vnd.github+json"
-                },
-
-                body: JSON.stringify({
-
-                    message: "Update pointer",
-                    content: btoa(filename),
-                    sha: currentFile.sha,
-                    branch: branch
-
-                })
-
-            });
-
-            alert("Gespeichert!");
-
+        if (!token) {
+            token = prompt("GitHub Token eingeben");
+            localStorage.setItem("githubToken", token);
         }
 
-    // BUTTON VERBINDEN
+        const html = quill.root.innerHTML;
+
+        const filename = "content-" + Date.now() + ".html";
+
+        const encoded = btoa(unescape(encodeURIComponent(html)));
+
+
+        // neue content Datei erzeugen
+        await fetch(`https://api.github.com/repos/${repo}/contents/content/${filename}`, {
+
+            method: "PUT",
+
+            headers: {
+                "Authorization": "token " + token,
+                "Accept": "application/vnd.github+json"
+            },
+
+            body: JSON.stringify({
+
+                message: "new content version",
+                content: encoded,
+                branch: branch
+
+            })
+
+        });
+
+
+        // current.txt laden
+        const currentFile = await fetch(
+            `https://api.github.com/repos/${repo}/contents/current.txt`
+        ).then(r => r.json());
+
+
+        // pointer aktualisieren
+        await fetch(`https://api.github.com/repos/${repo}/contents/current.txt`, {
+
+            method: "PUT",
+
+            headers: {
+                "Authorization": "token " + token,
+                "Accept": "application/vnd.github+json"
+            },
+
+            body: JSON.stringify({
+
+                message: "update pointer",
+                content: btoa(filename),
+                sha: currentFile.sha,
+                branch: branch
+
+            })
+
+        });
+
+        alert("Gespeichert!");
+
+    }
+
     document.getElementById("save").onclick = saveToGitHub;
 
 </script>
