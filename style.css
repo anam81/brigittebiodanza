@@ -3,13 +3,20 @@
     --Farbe2: #4c79f5;
     --Farbe3: #1db8cc;
     --Farbe4: #17b377;
-    --Farbe5: #ffb01d;
+    --Farbe5: #ffad14;
     --Farbe6: #e01c5d;
     --Farbe7: #eb5050;
-    --FarbeLink: #ffb01d;
+    --FarbeLink: #ffad14;
 }
 /* Editor */
 .ql-snow .ql-editor a {
     color: var(--FarbeLink);
     text-decoration: none;
+}
+#editor {
+    min-height: 200px;
+    max-height: 80vh;
+    overflow-y: auto;
+    resize: vertical;
+    /* erlaubt live Höhe ändern */
 }
