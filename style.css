@@ -1,7 +1,7 @@
 :root {
     --Farbe1: #464646;
     --Farbe2: #4c79f5;
-    --Farbe3: #1db8cc;
+    --Farbe3: #12b3e4;
     --Farbe4: #09915d;
     --Farbe5: #ffad14;
     --Farbe6: #e01c5d;
@@ -92,7 +92,7 @@ nav ul li {
 /* Linie */
 .line {
     width: 100px;
-    height: 2px;
+    height: 1px;
     background-color: var(--FarbeGrau);
     margin: 20px auto;
 }
