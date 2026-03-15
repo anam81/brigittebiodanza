@@ -1,38 +1,40 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
-<meta charset="UTF-8">
-<title>Meine Webseite</title>
+    <meta charset="UTF-8">
+    <title>Meine Webseite</title>
 
-<style>
-body{
-font-family:Arial;
-max-width:800px;
-margin:auto;
-}
+    <style>
+        body {
+            font-family: Arial;
+            max-width: 800px;
+            margin: auto;
+        }
 
-header, footer{
-background:#f0f0f0;
-padding:20px;
-}
+        header,
+        footer {
+            background: #f0f0f0;
+            padding: 20px;
+        }
 
-#content{
-padding:20px;
-}
-</style>
+        #content {
+            padding: 20px;
+        }
+    </style>
 </head>
 
 <body>
 
-<header>
-<h1>Meine Webseite</h1>
-</header>
+    <header>
+        <h1>Meine Webseite</h1>
+    </header>
 
-<div id="content"></div>
+    <div id="content"></div>
 
-<footer>
-© 2026
-</footer>
+    <footer>
+        © 2026
+    </footer>
 
 <script>
 
@@ -73,6 +75,11 @@ padding:20px;
             if (res.ok) {
 
                 const html = await res.text();
+
+                // GitHub Pages fallback erkennen
+                if (html.trim().startsWith("<!DOCTYPE")) {
+                    continue;
+                }
                 document.getElementById("content").innerHTML = html;
                 return;
 
