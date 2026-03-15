@@ -5,3 +5,15 @@
     --color-danger: #ea4335;
     --color-text: #202124;
 }
+/* Aktive Toolbar-Buttons (bold, italic, underline usw.) */
+.ql-snow .ql-toolbar .ql-active {
+    background-color: #fff;
+    /* optional: Hintergrund weiß lassen */
+    color: orange;
+    /* hier stellst du die aktive Farbe ein */
+}
+
+/* Optional: beim Hover */
+.ql-snow .ql-toolbar button:hover {
+    color: rgb(255, 209, 124);
+}
