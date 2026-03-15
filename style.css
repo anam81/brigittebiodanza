@@ -5,15 +5,17 @@
     --color-danger: #ea4335;
     --color-text: #202124;
 }
-/* Aktive Toolbar-Buttons (bold, italic, underline usw.) */
-.ql-snow .ql-toolbar .ql-active {
-    background-color: #424242;
-    /* optional: Hintergrund weiß lassen */
-    color: orange !important;
-    /* hier stellst du die aktive Farbe ein */
+/* Aktive Toolbar-Buttons orange färben */
+.ql-snow .ql-toolbar button.ql-active .ql-stroke {
+    stroke: orange !important;
 }
-
-/* Optional: beim Hover */
-.ql-snow .ql-toolbar button:hover {
-    color: rgb(255, 209, 124);
+.ql-snow .ql-toolbar button.ql-active .ql-fill {
+    fill: orange !important;
+}
+/* Optional: Hover-Effekt */
+.ql-snow .ql-toolbar button:hover .ql-stroke {
+    stroke: orange !important;
+}
+.ql-snow .ql-toolbar button:hover .ql-fill {
+    fill: orange !important;
 }
