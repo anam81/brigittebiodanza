@@ -52,10 +52,33 @@ toolbar:[
 // bestehenden Inhalt laden
     async function loadContent() {
 
-        const pointer = await fetch("current.txt?v=" + Date.now())
-            .then(r => r.text());
+        const repo = "anam81/brigittebiodanza";
 
-        const html = await fetch("content/" + pointer.trim())
+        const files = await fetch(
+            `https://api.github.com/repos/${repo}/contents/content`
+        ).then(r => r.json());
+
+        let newest = null;
+        let newestTime = 0;
+
+        files.forEach(file => {
+
+            const match = file.name.match(/content-(\d+)\.html/);
+
+            if (match) {
+
+                const time = parseInt(match[1]);
+
+                if (time > newestTime) {
+                    newestTime = time;
+                    newest = file.name;
+                }
+
+            }
+
+        });
+
+        const html = await fetch("content/" + newest)
             .then(r => r.text());
 
         quill.root.innerHTML = html;
@@ -64,6 +87,8 @@ toolbar:[
 
     loadContent();
 
+
+// save
     async function saveToGitHub() {
 
         const repo = "anam81/brigittebiodanza";
@@ -82,8 +107,6 @@ toolbar:[
 
         const encoded = btoa(unescape(encodeURIComponent(html)));
 
-
-        // neue content Datei erzeugen
         await fetch(`https://api.github.com/repos/${repo}/contents/content/${filename}`, {
 
             method: "PUT",
@@ -97,34 +120,6 @@ toolbar:[
 
                 message: "new content version",
                 content: encoded,
-                branch: branch
-
-            })
-
-        });
-
-
-        // current.txt laden
-        const currentFile = await fetch(
-            `https://api.github.com/repos/${repo}/contents/current.txt`
-        ).then(r => r.json());
-
-
-        // pointer aktualisieren
-        await fetch(`https://api.github.com/repos/${repo}/contents/current.txt`, {
-
-            method: "PUT",
-
-            headers: {
-                "Authorization": "token " + token,
-                "Accept": "application/vnd.github+json"
-            },
-
-            body: JSON.stringify({
-
-                message: "update pointer",
-                content: btoa(filename),
-                sha: currentFile.sha,
                 branch: branch
 
             })

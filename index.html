@@ -36,18 +36,42 @@ padding:20px;
 
 <script>
 
-    async function loadPage() {
+    async function loadLatest() {
 
-        const pointer = await fetch("current.txt?v=" + Date.now()).then(r => r.text());
+        const repo = "anam81/brigittebiodanza";
 
-        const html = await fetch("content/" + pointer.trim() + "?v=" + Date.now())
+        const files = await fetch(
+            `https://api.github.com/repos/${repo}/contents/content`
+        ).then(r => r.json());
+
+        let newest = null;
+        let newestTime = 0;
+
+        files.forEach(file => {
+
+            const match = file.name.match(/content-(\d+)\.html/);
+
+            if (match) {
+
+                const time = parseInt(match[1]);
+
+                if (time > newestTime) {
+                    newestTime = time;
+                    newest = file.name;
+                }
+
+            }
+
+        });
+
+        const html = await fetch("content/" + newest + "?v=" + Date.now())
             .then(r => r.text());
 
         document.getElementById("content").innerHTML = html;
 
     }
 
-    loadPage();
+    loadLatest();
 
 </script>
 
