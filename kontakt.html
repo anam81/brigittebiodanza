@@ -36,21 +36,58 @@
         <div class="line"></div>
         <h1 class="title-large">Kontakt</h1>
 
-        <form action="https://getform.io/f/czdu4o9u17x" method="POST" class="kontakt-form">
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" required>
+        <form id="contact-form" class="kontakt-form">
+            <label for="firstName">Vorname *</label>
+            <input type="text" id="firstName" name="fi-sender-firstName" placeholder="Dein Vorname" required />
         
-            <label for="email">E-Mail:</label>
-            <input type="email" id="email" name="email" required>
+            <label for="lastName">Nachname *</label>
+            <input type="text" id="lastName" name="fi-sender-lastName" placeholder="Dein Nachname" required />
         
-            <label for="message">Nachricht:</label>
-            <textarea id="message" name="message" rows="8" required></textarea>
+            <label for="email">E-Mail *</label>
+            <input type="email" id="email" name="fi-sender-email" placeholder="deine@email.de" required />
         
-            <!-- Honeypot für Spam-Schutz -->
-            <input type="text" name="_gotcha" style="display:none">
+            <label for="message">Nachricht *</label>
+            <textarea id="message" name="fi-text-message" placeholder="Deine Nachricht" required></textarea>
         
-            <button type="submit">Absenden</button>
+            <button type="submit">Nachricht senden</button>
+        
+            <p id="form-status"></p>
         </form>
+        
+        <!-- Forminit SDK -->
+        <script src="https://forminit.com/sdk/v1/forminit.js"></script>
+        <script>
+            const forminit = new Forminit();
+            const FORM_ID = 'czdu4o9u17x';
+
+            const form = document.getElementById('contact-form');
+            const status = document.getElementById('form-status');
+            const submitButton = form.querySelector('button[type="submit"]');
+
+            form.addEventListener('submit', async function (event) {
+                event.preventDefault();
+
+                status.textContent = 'Sending…';
+                status.style.color = '#007bff'; // blau wie Loading
+                submitButton.disabled = true;
+
+                const formData = new FormData(form);
+                const { error } = await forminit.submit(FORM_ID, formData);
+
+                submitButton.disabled = false;
+
+                if (error) {
+                    status.textContent = error.message;
+                    status.style.color = '#dc3545'; // rot für Fehler
+                    return;
+                }
+
+                status.textContent = 'Nachricht erfolgreich gesendet';
+                status.style.color = "var(--Farbe4)";
+                status.style.fontWeight = "bold";
+                form.reset();
+            });
+        </script>
 
         
     </div>

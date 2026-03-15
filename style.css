@@ -2,7 +2,7 @@
     --Farbe1: #464646;
     --Farbe2: #4c79f5;
     --Farbe3: #1db8cc;
-    --Farbe4: #17b377;
+    --Farbe4: #09915d;
     --Farbe5: #ffad14;
     --Farbe6: #e01c5d;
     --Farbe7: #eb5050;
@@ -117,7 +117,7 @@ p {
 }
 .unterLogo {
     margin: 3px;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
 }
 
 /* Galerie */
