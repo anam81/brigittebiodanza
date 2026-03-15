@@ -7,9 +7,9 @@
 }
 /* Aktive Toolbar-Buttons (bold, italic, underline usw.) */
 .ql-snow .ql-toolbar .ql-active {
-    background-color: #fff;
+    background-color: #424242;
     /* optional: Hintergrund weiß lassen */
-    color: orange;
+    color: orange !important;
     /* hier stellst du die aktive Farbe ein */
 }
 
