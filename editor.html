@@ -44,37 +44,39 @@
 
     <button id="save">Save</button>
 
+    <!-- Make sure these scripts are loaded before your snippet -->
     <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/quill-image-resize-module@3.0.0/image-resize.min.js"></script>
+    <script type="module">
+        // Import the modern image-drop-and-paste module from Skypack
+        import QuillImageDropAndPaste from 'https://cdn.skypack.dev/quill-image-drop-and-paste';
+        Quill.register('modules/imageDrop', QuillImageDropAndPaste);
 
-    <script>
-
-        // Image Resize Modul registrieren (über CDN vorher einbinden)
-            Quill.register('modules/imageResize', window.QuillImageResizeModule);
-
-            const quill = new Quill('#editor', {
-                theme: 'snow',
-                modules: {
-                    toolbar: [
-                        [{ header: [1, 2, 3, false] }],
-                        ['bold', 'italic', 'underline'],
-                        [{
-                            color: [
-                                getComputedStyle(document.documentElement).getPropertyValue('--Farbe1').trim(),
-                                getComputedStyle(document.documentElement).getPropertyValue('--Farbe2').trim(),
-                                getComputedStyle(document.documentElement).getPropertyValue('--Farbe3').trim(),
-                                getComputedStyle(document.documentElement).getPropertyValue('--Farbe4').trim(),
-                                getComputedStyle(document.documentElement).getPropertyValue('--Farbe5').trim(),
-                                getComputedStyle(document.documentElement).getPropertyValue('--Farbe6').trim(),
-                                getComputedStyle(document.documentElement).getPropertyValue('--Farbe7').trim()
-                            ]
-                        }],
-                        [{ list: 'ordered' }, { list: 'bullet' }],
-                        ['link', 'image']  // Image-Button aktiv
-                    ],
-                    imageResize: {} // aktiviert Griffe zum Skalieren von Bildern
-                }
-            });
+        // 2️⃣ Initialize Quill
+        const quill = new Quill('#editor', {
+            theme: 'snow',
+            modules: {
+                toolbar: [
+                    [{ header: [1, 2, 3, false] }],
+                    ['bold', 'italic', 'underline'],
+                    [{
+                        color: [
+                            getComputedStyle(document.documentElement).getPropertyValue('--Farbe1').trim(),
+                            getComputedStyle(document.documentElement).getPropertyValue('--Farbe2').trim(),
+                            getComputedStyle(document.documentElement).getPropertyValue('--Farbe3').trim(),
+                            getComputedStyle(document.documentElement).getPropertyValue('--Farbe4').trim(),
+                            getComputedStyle(document.documentElement).getPropertyValue('--Farbe5').trim(),
+                            getComputedStyle(document.documentElement).getPropertyValue('--Farbe6').trim(),
+                            getComputedStyle(document.documentElement).getPropertyValue('--Farbe7').trim()
+                        ]
+                    }],
+                    [{ list: 'ordered' }, { list: 'bullet' }],
+                    ['link', 'image'] // Image button active
+                ],
+                imageDrop: true,     // enables drag & paste
+                imageResize: {}      // enables resize handles
+            }
+        });
 
         // bestehenden Inhalt laden
         async function loadContent() {
