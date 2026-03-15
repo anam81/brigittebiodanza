@@ -3,11 +3,11 @@
     --Farbe2: #4c79f5;
     --Farbe3: #12b3e4;
     --Farbe4: #09915d;
-    --Farbe5: #ffad14;
+    --Farbe5: #ff8800;
     --Farbe6: #e01c5d;
     --Farbe7: #eb5050;
     --FarbeGrau: #858585;
-    --FarbeLink: #ffad14;
+    --FarbeLink: #4c79f5;
 }
 
 /* Editor */
@@ -35,6 +35,7 @@ body {
 
 a {
     color: var(--FarbeLink);
+    font-weight: 600;
     text-decoration: none;
 }
 
@@ -63,6 +64,9 @@ nav ul {
 nav ul li {
     font-weight: 600;
     font-size: 1rem;
+}
+nav ul li a {
+    color: var(--Farbe5);
 }
 
 /* Hero */

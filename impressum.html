@@ -36,15 +36,47 @@
             <img src="Bilder/logo-fuer-header-6.jpg" alt="Biodanza Brigitte Bremen Logo">
             <p class="unterLogo">Willkommen bei Biodanza</p>
             <div class="line"></div>
-            <h1 class="title-large">Kontakt</h1>
+            <h1 class="title-large">Impressum</h1>
 
-            <h1>hsrtsh</h1>
-            <h2>hsrtstrh</h2>
-            <p>gaergera2</p>
-            <h2>nsnsnrs</h2>
-            <h1>hsrthtrs</h1>
-            <p>hsrthsr<br>pijsbphs</p>
-            <h1>hsrhr</h1>
+            <div class="imprint" style="text-align:left;">
+            
+                <p><strong>Angaben gemäß § 5 TMG:</strong></p>
+            
+                <p>
+                    Brigitte Münch<br>
+                    Zertifizierte Biodanza-Lehrerin (IBFed)<br><br>
+            
+                    28215 Bremen<br>
+                    Regensburgerstr. 17
+                </p>
+            
+                <p>
+                    <strong>Kontakt:</strong><br>
+                    Tel: 0421-70836535<br>
+                    Mobil: 0157-55453981<br>
+                    E-Mail: <span id="mail"></span>
+                </p>
+            
+                <p>
+                    <strong>Quellenangaben für die verwendeten Bilder:</strong><br>
+                    Naveen Li<br>
+                    <a href="https://www.biodanza-naveen.com" target="_blank" rel="noopener">
+                        www.biodanza-naveen.com
+                    </a>
+                </p>
+            
+            </div>
+            
+            <script>
+                (function () {
+                    var user = "britt.muench";
+                    var domain = "gmx.de";
+                    var link = document.createElement("a");
+                    link.href = "mailto:" + user + "@" + domain;
+                    link.textContent = user + "@" + domain;
+                    document.getElementById("mail").appendChild(link);
+                })();
+            </script>
 
         </div>
 
