@@ -3,7 +3,7 @@ const images = [
     "bg/water.jpg",
     "bg/sun2.jpg",
     "bg/air.jpg",
-    "bg/soil2.jpg"
+    "bg/soil3.jpg"
 ];
 
 // Aktuellen Index aus localStorage laden
