@@ -1,9 +1,9 @@
 // bg-slideshow.js
 const images = [
     "bg/water.jpg",
-    "bg/sun2.jpg",
+    "bg/sun.jpg",
     "bg/air.jpg",
-    "bg/soil3.jpg"
+    "bg/soil.jpg"
 ];
 
 // Aktuellen Index aus localStorage laden
