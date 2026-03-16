@@ -148,6 +148,10 @@ footer {
     color: var(--FarbeGrau);
     box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.05);
 }
+footer p {
+    font-size: 0.85rem;
+    margin: 1px 0;
+}
 
 footer a {
     margin: 0 10px;
@@ -188,11 +192,11 @@ footer a {
 
     nav ul {
         flex-direction: column;
-        gap: 5px;
+        gap: 8px;
     }
     nav ul li {
         line-height: 1.2;   /* kleinerer Zeilenabstand */
-        font-size: 0.95rem; /* optional etwas kleiner */
+        font-size: 1rem; /* optional etwas kleiner */
     }
 
     .hero {
