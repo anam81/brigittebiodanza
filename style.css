@@ -129,9 +129,9 @@ nav ul li a {
 
 /* Linie */
 .line {
-    width: 100px;
+    width: 70px;
     height: 1px;
-    background-color: var(--FarbeGrau);
+    background-color: var(--Farbe1);
     margin: 20px auto;
 }
 
@@ -268,7 +268,7 @@ footer a {
     }
 
     .line {
-        width: 70px;
+        width: 50px;
     }
 
 }
