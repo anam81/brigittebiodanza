@@ -180,6 +180,7 @@ footer {
     padding: 17px 0;
     text-align: center;
     font-size: 0.85rem;
+    font-weight: 400;
     color: var(--FarbeGrau);
     box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.05);
 }
