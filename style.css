@@ -19,7 +19,10 @@
     font-family: 'Montserrat', sans-serif;
 }
 .ql-editor h1 {
-    font-weight: inherit;
+    font-weight: 600;
+}
+.ql-editor strong {
+    font-weight: 700;
 }
 
 /* Basis-Stile */
