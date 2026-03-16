@@ -31,6 +31,7 @@ body {
     color: var(--Farbe1);
     text-align: center;
     line-height: 1.6;
+    font-weight: 600;
 }
 
 a {
@@ -69,13 +70,33 @@ nav ul li a {
     color: var(--Farbe5);
 }
 
-/* Hero */
-.hero {
-    background-image: url("bg/sun2.jpg");
-    width: 100%;
+/* Hintergrund-Fixierung */
+.hero-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
     background-size: cover;
-    background-repeat: no-repeat;
     background-position: center;
+    background-repeat: no-repeat;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 7s ease-in-out;
+    will-change: opacity;
+    /* smoother transitions */
+}
+.bg1 {
+    opacity: 1;
+    /* Startbild sichtbar */
+}
+.bg2 {
+    opacity: 0;
+    /* Start unsichtbar */
+}
+
+/* Hero-Inhalt */
+.hero {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -108,7 +129,7 @@ nav ul li a {
 /* Überschriften */
 .title-small {
     font-size: 1.5rem;
-    font-weight: 500;
+    font-weight: 600;
     margin-top: 10px;
 }
 
@@ -121,6 +142,7 @@ nav ul li a {
 /* Text */
 p {
     font-size: 1rem;
+    font-weight: 600;
     margin: 17px 0;
 }
 .unterLogo {
