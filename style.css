@@ -18,11 +18,11 @@
 .ql-editor {
     font-family: 'Montserrat', sans-serif;
 }
-.ql-editor h1 {
+.ql-snow .ql-editor h1 {
+    font-family: 'Montserrat', sans-serif;
     font-weight: 600;
-}
-.ql-editor strong {
-    font-weight: 700;
+    font-size: 1.3rem;
+    margin-top: 10px;
 }
 
 /* Basis-Stile */
