@@ -9,6 +9,32 @@
     --FarbeGrau: #858585;
     --FarbeLink: #4c79f5;
 }
+/* montserrat-regular - latin */
+@font-face {
+    font-display: swap;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    src: url('/fonts/montserrat-v31-latin-regular.woff2') format('woff2');
+}
+
+/* montserrat-600 - latin */
+@font-face {
+    font-display: swap;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 600;
+    src: url('/fonts/montserrat-v31-latin-600.woff2') format('woff2');
+}
+
+/* montserrat-700 - latin */
+@font-face {
+    font-display: swap;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    src: url('/fonts/montserrat-v31-latin-700.woff2') format('woff2');
+}
 
 /* Editor */
 .ql-snow .ql-editor a {
@@ -41,6 +67,12 @@ body {
     text-align: center;
     line-height: 1.6;
     font-weight: 600;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+main {
+    flex: 1;
 }
 
 a {
@@ -118,6 +150,7 @@ nav ul li a {
     padding: 30px 20px;
     max-width: 900px;
     margin: 0 auto;
+    flex: 1;
 }
 .section img {
     border-radius: 8px;
